@@ -1,5 +1,16 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="HelloWorld" ToolsVersion="4.0">
-  <Target Name="HelloWorld">
-    <Message Text="HelloWorld"/>
+  <PropertyGroup>
+    <FirstName Condition="'$(FirstName)'==''"></FirstName>
+    <UserGender Condition="'$(UserGender)'==''">F</UserGender>
+  </PropertyGroup>
+  <Target Name="ValidateFirstName">
+    <Error Text="'FirstName' property has to be specified" Condition="'$(FirstName)' == ''" />
+  </Target>
+  <Target Name="HelloWorld" DependsOnTargets="ValidateFirstName">
+    <Message Text="Hello $(FirstName)" Importance="High"/>
+  </Target>
+  <Target Name="GoodByeWorld">
+    <Message Text="Oh nooooo (crying)" Importance="Low" Condition="'$(UserGender)' == 'F'"/>
+    <Message Text="Men don't cry!" Importance="Normal" Condition="'$(UserGender)' == 'M'"/>
   </Target>
 </Project>
