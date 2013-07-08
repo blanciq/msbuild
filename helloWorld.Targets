@@ -1,0 +1,13 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="HelloWorld" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Name Condition="$(Name) == ''"></Name>
+    <Gender Condition="'$(Gender)' == ''"></Gender>
+  </PropertyGroup>
+  <Target Name="HelloWorld">
+    <Message Text="Hello $(Name)" Importance="high" />
+  </Target>
+  <Target Name="GoodByeWorld">
+    <Message Text="Don't cry! You're a man!" Importance="low" Condition="$(Gender) == 'M'" />
+    <Message Text="Cry, woman, cry!!" Importance="low" Condition="$(Gender) == 'F'" />
+  </Target>
+</Project>
