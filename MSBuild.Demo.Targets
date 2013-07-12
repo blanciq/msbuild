@@ -3,6 +3,9 @@
     <FirstName Condition="'$(FirstName)'==''"></FirstName>
     <UserGender Condition="'$(UserGender)'==''">F</UserGender>
   </PropertyGroup>
+
+  <Import Project="C:\Program Files\MSBuild\ExtensionPack\4.0\MSBuild.ExtensionPack.tasks" />
+  
   <Target Name="ValidateFirstName">
     <Error Text="'FirstName' property has to be specified" Condition="'$(FirstName)' == ''" />
   </Target>
